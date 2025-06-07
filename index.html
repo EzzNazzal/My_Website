@@ -3,21 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EzzEdden Nazzal - Data Scientist</title>
+    <!-- SEO & Open Graph Meta Tags -->
+    <meta name="description" content="EzzEdden Nazzal — Junior Data Scientist portfolio featuring a bilingual chatbot built with Python, TF-IDF, and deep learning.">
+    <meta property="og:title" content="EzzEdden Nazzal - Data Scientist Portfolio">
+    <meta property="og:description" content="Explore projects in Python, SQL, Machine Learning, and NLP, including the Yarmouk Assistant Bot.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="YOUR_WEBSITE_URL_HERE"> <!-- Replace with your actual URL -->
+    <meta property="og:image" content="https://placehold.co/1200x630/000000/FFFFFF?text=EzzEdden+Nazzal+Portfolio"> <!-- Replace with your portfolio's hero image -->
+
+    <title>EzzEdden Nazzal - Junior Data Scientist</title>
+
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
     <style>
+        /* Base styles */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        :root {
+            --background-dark: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+            --background-light: linear-gradient(135deg, #f0f8ff 0%, #e0f2f7 50%, #d0e7ed 100%);
+            --text-dark: #e0e0e0;
+            --text-light: #212529; /* Kept for general text, dark gray */
+            --primary-dark: #00ffff;
+            --primary-light: #003366; /* Darker blue for light mode titles/accents */
+            --secondary-dark: #00ff7f;
+            --secondary-light: #155724; /* Darker green for light mode accents */
+            --card-bg-dark: rgba(0, 0, 0, 0.8);
+            --card-bg-light: rgba(255, 255, 255, 0.95); /* Less transparent for light mode */
+            --border-dark: rgba(0, 255, 255, 0.3);
+            --border-light: rgba(0, 51, 102, 0.3); /* Adjusted for new primary-light */
+            --shadow-dark: rgba(0, 255, 255, 0.2);
+            --shadow-light: rgba(0, 51, 102, 0.1); /* Adjusted for new primary-light */
+        }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Inter', sans-serif;
             line-height: 1.6;
-            color: #e0e0e0;
-            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+            color: var(--text-dark);
+            background: var(--background-dark);
             min-height: 100vh;
             overflow-x: hidden;
+            transition: background 0.5s ease, color 0.5s ease;
+        }
+
+        body.light-mode {
+            color: var(--text-light);
+            background: var(--background-light);
         }
 
         .container {
@@ -26,24 +64,127 @@
             padding: 20px;
         }
 
+        /* Sticky Navigation */
+        nav {
+            position: sticky;
+            top: 0;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 15px 20px;
+            border-bottom: 1px solid var(--border-dark);
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background 0.5s ease, border-color 0.5s ease;
+        }
+
+        body.light-mode nav {
+            background: rgba(255, 255, 255, 0.9);
+            border-bottom-color: var(--border-light);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+
+        nav ul li a {
+            color: var(--primary-dark);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: color 0.3s ease, transform 0.3s ease;
+            position: relative;
+        }
+
+        body.light-mode nav ul li a {
+            color: var(--primary-light);
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--secondary-dark);
+            left: 0;
+            bottom: -5px;
+            transition: width 0.3s ease;
+        }
+        body.light-mode nav ul li a::after {
+            background: var(--secondary-light);
+        }
+
+        nav ul li a:hover {
+            color: var(--secondary-dark);
+            transform: translateY(-2px);
+        }
+        body.light-mode nav ul li a:hover {
+            color: var(--secondary-light);
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        /* Light/Dark Mode Toggle */
+        .theme-toggle {
+            position: absolute;
+            right: 20px;
+            background: none;
+            border: none;
+            color: var(--text-dark);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+        body.light-mode .theme-toggle {
+            color: var(--text-light);
+        }
+        .theme-toggle:hover {
+            transform: scale(1.1);
+            color: var(--primary-dark);
+        }
+        body.light-mode .theme-toggle:hover {
+            color: var(--primary-light);
+        }
+
+
         header {
-            background: rgba(0, 0, 0, 0.7);
+            background: var(--card-bg-dark);
             backdrop-filter: blur(15px);
             border-radius: 20px;
             padding: 40px;
             text-align: center;
             margin-bottom: 30px;
-            border: 1px solid rgba(0, 255, 255, 0.3);
-            box-shadow: 0 0 30px rgba(0, 255, 255, 0.2);
+            border: 1px solid var(--border-dark);
+            box-shadow: 0 0 30px var(--shadow-dark);
             animation: slideDown 0.8s ease-out, glow 2s ease-in-out infinite alternate;
+            transition: background 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease;
+        }
+
+        body.light-mode header {
+            background: var(--card-bg-light);
+            border-color: var(--border-light);
+            box-shadow: 0 0 30px var(--shadow-light);
         }
 
         @keyframes glow {
             from {
-                box-shadow: 0 0 30px rgba(0, 255, 255, 0.2);
+                box-shadow: 0 0 30px var(--shadow-dark);
             }
             to {
                 box-shadow: 0 0 40px rgba(0, 255, 255, 0.4);
+            }
+        }
+        body.light-mode @keyframes glow {
+            from {
+                box-shadow: 0 0 30px var(--shadow-light);
+            }
+            to {
+                box-shadow: 0 0 40px rgba(0, 123, 255, 0.2);
             }
         }
 
@@ -60,26 +201,121 @@
 
         h1 {
             font-size: 3rem;
-            color: #00ffff;
-            margin-bottom: 10px;
-            text-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+            color: var(--primary-dark);
+            margin-bottom: 5px;
+            text-shadow: 0 0 20px var(--shadow-dark);
             animation: textGlow 2s ease-in-out infinite alternate;
+            transition: color 0.5s ease, text-shadow 0.5s ease;
         }
+        body.light-mode h1 {
+            color: var(--primary-light);
+            text-shadow: 0 0 20px var(--shadow-light);
+        }
+
 
         @keyframes textGlow {
             from {
-                text-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+                text-shadow: 0 0 20px var(--shadow-dark);
             }
             to {
                 text-shadow: 0 0 30px rgba(0, 255, 255, 0.8);
             }
         }
+        body.light-mode @keyframes textGlow {
+            from {
+                text-shadow: 0 0 20px var(--shadow-light);
+            }
+            to {
+                text-shadow: 0 0 30px rgba(0, 123, 255, 0.4);
+            }
+        }
 
-        .subtitle {
+        .tagline {
             font-size: 1.5rem;
-            color: #00ff7f;
+            color: var(--secondary-dark);
             margin-bottom: 20px;
             text-shadow: 0 0 10px rgba(0, 255, 127, 0.3);
+            transition: color 0.5s ease, text-shadow 0.5s ease;
+        }
+        body.light-mode .tagline {
+            color: var(--secondary-light);
+            text-shadow: 0 0 10px rgba(40, 167, 69, 0.3);
+        }
+
+        .resume-section {
+            margin-top: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .resume-button {
+            background: linear-gradient(135deg, var(--primary-dark), var(--secondary-dark));
+            color: #000; /* Stays dark for contrast on gradient */
+            padding: 12px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px var(--shadow-dark);
+        }
+
+        body.light-mode .resume-button {
+            background: linear-gradient(135deg, var(--primary-light), var(--secondary-light));
+            color: var(--text-light); /* Changed to text-light for better readability */
+            box-shadow: 0 5px 20px var(--shadow-light);
+        }
+
+        .resume-button:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 30px rgba(0, 255, 255, 0.5);
+        }
+        body.light-mode .resume-button:hover {
+            box-shadow: 0 8px 30px rgba(0, 123, 255, 0.3);
+        }
+
+        .quick-facts {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        .fact-item {
+            font-size: 1rem;
+            background: var(--card-bg-dark);
+            padding: 10px 20px;
+            border-radius: 10px;
+            border: 1px solid var(--border-dark);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 5px 15px var(--shadow-dark);
+            transition: all 0.3s ease;
+        }
+        body.light-mode .fact-item {
+            background: var(--card-bg-light);
+            border-color: var(--border-light);
+            box-shadow: 0 5px 15px var(--shadow-light);
+        }
+
+        .fact-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 255, 255, 0.4);
+        }
+        body.light-mode .fact-item:hover {
+            box-shadow: 0 8px 20px rgba(0, 123, 255, 0.2);
+        }
+
+        .fact-item i {
+            color: var(--primary-dark);
+            font-size: 1.2rem;
+        }
+        body.light-mode .fact-item i {
+            color: var(--primary-light);
         }
 
         .contact-info {
@@ -94,22 +330,32 @@
             background: rgba(0, 0, 0, 0.5);
             padding: 12px 24px;
             border-radius: 25px;
-            color: #00ffff;
+            color: var(--primary-dark);
             text-decoration: none;
             transition: all 0.3s ease;
-            border: 1px solid rgba(0, 255, 255, 0.3);
+            border: 1px solid var(--border-dark);
             position: relative;
             overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
         }
+        body.light-mode .contact-item {
+            background: rgba(255, 255, 255, 0.7);
+            color: var(--primary-light);
+            border-color: var(--border-light);
+        }
 
         .contact-item:hover {
             background: rgba(0, 255, 255, 0.1);
             transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(0, 255, 255, 0.3);
+            box-shadow: 0 8px 25px var(--shadow-dark);
             border-color: rgba(0, 255, 255, 0.8);
+        }
+        body.light-mode .contact-item:hover {
+            background: rgba(0, 123, 255, 0.1);
+            box-shadow: 0 8px 25px var(--shadow-light);
+            border-color: rgba(0, 123, 255, 0.8);
         }
 
         .contact-item::before {
@@ -121,6 +367,9 @@
             height: 100%;
             background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.2), transparent);
             transition: left 0.5s;
+        }
+        body.light-mode .contact-item::before {
+            background: linear-gradient(90deg, transparent, rgba(0, 123, 255, 0.2), transparent);
         }
 
         .contact-item:hover::before {
@@ -141,21 +390,32 @@
 
         .main-content {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr; /* Stack columns by default */
             gap: 30px;
             margin-bottom: 30px;
         }
 
+        @media (min-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr 1fr; /* Two columns on larger screens */
+            }
+        }
+
         .card {
-            background: rgba(0, 0, 0, 0.8);
+            background: var(--card-bg-dark);
             border-radius: 20px;
             padding: 30px;
-            box-shadow: 0 10px 50px rgba(0, 255, 255, 0.1);
-            border: 1px solid rgba(0, 255, 255, 0.2);
+            box-shadow: 0 10px 50px var(--shadow-dark);
+            border: 1px solid var(--border-dark);
             transition: all 0.3s ease;
             animation: fadeInUp 0.8s ease-out;
             position: relative;
             overflow: hidden;
+        }
+        body.light-mode .card {
+            background: var(--card-bg-light);
+            box-shadow: 0 10px 50px var(--shadow-light);
+            border-color: var(--border-light);
         }
 
         .card::before {
@@ -165,15 +425,23 @@
             left: 0;
             right: 0;
             height: 2px;
-            background: linear-gradient(90deg, #00ffff, #00ff7f);
+            background: linear-gradient(90deg, var(--primary-dark), var(--secondary-dark));
             transform: scaleX(0);
+            transform-origin: left;
             transition: transform 0.5s ease;
+        }
+        body.light-mode .card::before {
+            background: linear-gradient(90deg, var(--primary-light), var(--secondary-light));
         }
 
         .card:hover {
             transform: translateY(-10px);
             box-shadow: 0 20px 60px rgba(0, 255, 255, 0.2);
             border-color: rgba(0, 255, 255, 0.5);
+        }
+        body.light-mode .card:hover {
+            box-shadow: 0 20px 60px rgba(0, 123, 255, 0.2);
+            border-color: rgba(0, 123, 255, 0.5);
         }
 
         .card:hover::before {
@@ -192,12 +460,17 @@
         }
 
         .card h2 {
-            color: #00ffff;
+            color: var(--primary-dark);
             margin-bottom: 20px;
             font-size: 1.8rem;
             position: relative;
             padding-bottom: 10px;
-            text-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+            text-shadow: 0 0 10px var(--shadow-dark);
+            transition: color 0.5s ease, text-shadow 0.5s ease;
+        }
+        body.light-mode .card h2 {
+            color: var(--primary-light);
+            text-shadow: 0 0 10px var(--shadow-light);
         }
 
         .card h2::after {
@@ -207,9 +480,12 @@
             left: 0;
             width: 60px;
             height: 3px;
-            background: linear-gradient(45deg, #00ffff, #00ff7f);
+            background: linear-gradient(45deg, var(--primary-dark), var(--secondary-dark));
             border-radius: 2px;
             animation: expandLine 1s ease-out 0.5s both;
+        }
+        body.light-mode .card h2::after {
+            background: linear-gradient(45deg, var(--primary-light), var(--secondary-light));
         }
 
         @keyframes expandLine {
@@ -217,65 +493,78 @@
             to { width: 60px; }
         }
 
+        .summary-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-dark);
+            text-align: justify;
+        }
+        body.light-mode .summary-text {
+            color: var(--text-light);
+        }
+
+        /* Skills Visualization */
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 15px;
         }
 
-        .skill-category {
-            background: linear-gradient(135deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 255, 255, 0.1) 100%);
-            padding: 20px;
+        .skill-item {
+            background: var(--card-bg-dark);
+            padding: 15px;
             border-radius: 15px;
-            border-left: 4px solid #00ffff;
+            border: 1px solid var(--border-dark);
+            display: flex;
+            align-items: center;
+            gap: 10px;
             transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
+            box-shadow: 0 4px 15px var(--shadow-dark);
+        }
+        body.light-mode .skill-item {
+            background: var(--card-bg-light);
+            border-color: var(--border-light);
+            box-shadow: 0 4px 15px var(--shadow-light);
         }
 
-        .skill-category::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, transparent, rgba(0, 255, 255, 0.1), transparent);
-            transform: translateX(-100%);
-            transition: transform 0.6s ease;
+        .skill-item:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 8px 25px rgba(0, 255, 255, 0.4);
+        }
+        body.light-mode .skill-item:hover {
+            box-shadow: 0 8px 25px rgba(0, 123, 255, 0.2);
         }
 
-        .skill-category:hover {
-            transform: translateX(10px) scale(1.02);
-            box-shadow: 0 10px 30px rgba(0, 255, 255, 0.2);
-            border-left-color: #00ff7f;
+        .skill-item i {
+            color: var(--primary-dark);
+            font-size: 1.5rem;
+        }
+        body.light-mode .skill-item i {
+            color: var(--primary-light);
         }
 
-        .skill-category:hover::before {
-            transform: translateX(100%);
+        .skill-item span {
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+        body.light-mode .skill-item span {
+            color: var(--text-light);
         }
 
-        .skill-category h3 {
-            color: #00ffff;
-            margin-bottom: 8px;
-            font-size: 1.1rem;
-        }
-
-        .skill-category p {
-            color: #b0b0b0;
-            font-size: 0.9rem;
-            line-height: 1.4;
-        }
-
+        /* Education & Certifications */
         .education-item, .cert-item {
             background: linear-gradient(135deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 255, 127, 0.1) 100%);
             padding: 20px;
             border-radius: 15px;
             margin-bottom: 15px;
-            border-left: 4px solid #00ff7f;
+            border-left: 4px solid var(--secondary-dark);
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
+        }
+        body.light-mode .education-item, body.light-mode .cert-item {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(40, 167, 69, 0.1) 100%);
+            border-left-color: var(--secondary-light);
         }
 
         .education-item::before, .cert-item::before {
@@ -289,11 +578,18 @@
             transform: translateX(-100%);
             transition: transform 0.6s ease;
         }
+        body.light-mode .education-item::before, body.light-mode .cert-item::before {
+            background: linear-gradient(45deg, transparent, rgba(40, 167, 69, 0.1), transparent);
+        }
 
         .education-item:hover, .cert-item:hover {
             transform: translateX(10px) scale(1.02);
             box-shadow: 0 10px 30px rgba(0, 255, 127, 0.2);
-            border-left-color: #00ffff;
+            border-left-color: var(--primary-dark);
+        }
+        body.light-mode .education-item:hover, body.light-mode .cert-item:hover {
+            box-shadow: 0 10px 30px rgba(40, 167, 69, 0.2);
+            border-left-color: var(--primary-light);
         }
 
         .education-item:hover::before, .cert-item:hover::before {
@@ -301,15 +597,22 @@
         }
 
         .education-item h3, .cert-item h3 {
-            color: #00ff7f;
+            color: var(--secondary-dark);
             margin-bottom: 5px;
+        }
+        body.light-mode .education-item h3, body.light-mode .cert-item h3 {
+            color: var(--secondary-light);
         }
 
         .education-item p, .cert-item p {
-            color: #b0b0b0;
+            color: var(--text-dark);
             font-size: 0.9rem;
         }
+        body.light-mode .education-item p, body.light-mode .cert-item p {
+            color: var(--text-light);
+        }
 
+        /* Project Section */
         .project-item {
             background: linear-gradient(135deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 100, 255, 0.1) 100%);
             padding: 25px;
@@ -319,6 +622,10 @@
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
+        }
+        body.light-mode .project-item {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(0, 123, 255, 0.1) 100%);
+            border-left-color: var(--primary-light);
         }
 
         .project-item::before {
@@ -332,15 +639,18 @@
             transform: translateX(-100%);
             transition: transform 0.6s ease;
         }
+        body.light-mode .project-item::before {
+            background: linear-gradient(45deg, transparent, rgba(0, 123, 255, 0.1), transparent);
+        }
 
         .project-item:hover {
             transform: translateX(10px) scale(1.02);
             box-shadow: 0 15px 40px rgba(0, 100, 255, 0.2);
-            border-left-color: #00ffff;
+            border-left-color: var(--primary-dark);
         }
-
-        .project-item:hover::before {
-            transform: translateX(100%);
+        body.light-mode .project-item:hover {
+            box-shadow: 0 15px 40px rgba(0, 123, 255, 0.2);
+            border-left-color: var(--secondary-light);
         }
 
         .project-header {
@@ -358,6 +668,10 @@
             margin: 0;
             text-shadow: 0 0 10px rgba(0, 100, 255, 0.3);
         }
+        body.light-mode .project-header h3 {
+            color: var(--primary-light);
+            text-shadow: 0 0 10px var(--shadow-light);
+        }
 
         .project-tags {
             display: flex;
@@ -367,7 +681,7 @@
 
         .project-tag {
             background: linear-gradient(135deg, #0066ff, #00ffff);
-            color: #000;
+            color: #000; /* Stays dark for contrast on gradient */
             padding: 6px 12px;
             border-radius: 15px;
             font-size: 0.8rem;
@@ -375,17 +689,28 @@
             box-shadow: 0 2px 10px rgba(0, 100, 255, 0.3);
             transition: all 0.3s ease;
         }
+        body.light-mode .project-tag {
+            background: linear-gradient(135deg, var(--primary-light), var(--secondary-light));
+            color: var(--text-light); /* Changed to text-light for better readability */
+            box-shadow: 0 2px 10px var(--shadow-light);
+        }
 
         .project-tag:hover {
             transform: translateY(-2px) scale(1.05);
             box-shadow: 0 4px 15px rgba(0, 100, 255, 0.5);
         }
+        body.light-mode .project-tag:hover {
+            box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+        }
 
         .project-description {
-            color: #e0e0e0;
+            color: var(--text-dark);
             line-height: 1.6;
             margin-bottom: 20px;
             font-size: 1rem;
+        }
+        body.light-mode .project-description {
+            color: var(--text-light);
         }
 
         .project-features {
@@ -393,21 +718,32 @@
         }
 
         .feature-item {
-            color: #d0d0d0;
+            color: var(--text-dark);
             margin-bottom: 10px;
             padding: 10px 0;
             border-bottom: 1px solid rgba(0, 100, 255, 0.2);
             transition: all 0.3s ease;
         }
+        body.light-mode .feature-item {
+            color: var(--text-light);
+            border-bottom-color: rgba(0, 123, 255, 0.2);
+        }
 
         .feature-item:hover {
-            color: #00ffff;
+            color: var(--primary-dark);
             padding-left: 10px;
             border-bottom-color: rgba(0, 255, 255, 0.4);
+        }
+        body.light-mode .feature-item:hover {
+            color: var(--primary-light);
+            border-bottom-color: rgba(0, 123, 255, 0.4);
         }
 
         .feature-item strong {
             color: #0066ff;
+        }
+        body.light-mode .feature-item strong {
+            color: var(--primary-light);
         }
 
         .project-metrics {
@@ -417,6 +753,9 @@
             margin-top: 20px;
             padding-top: 20px;
             border-top: 1px solid rgba(0, 100, 255, 0.3);
+        }
+        body.light-mode .project-metrics {
+            border-top-color: rgba(0, 123, 255, 0.3);
         }
 
         .metric {
@@ -432,24 +771,459 @@
             display: block;
             font-size: 1.8rem;
             font-weight: 700;
-            color: #00ffff;
-            text-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+            color: var(--primary-dark);
+            text-shadow: 0 0 15px var(--shadow-dark);
             margin-bottom: 5px;
+        }
+        body.light-mode .metric-number {
+            color: var(--primary-light);
+            text-shadow: 0 0 15px var(--shadow-light);
         }
 
         .metric-label {
             display: block;
             font-size: 0.9rem;
-            color: #b0b0b0;
+            color: var(--text-dark);
             text-transform: uppercase;
             letter-spacing: 1px;
         }
+        body.light-mode .metric-label {
+            color: var(--text-light);
+        }
 
-        .summary-text {
-            font-size: 1.1rem;
-            line-height: 1.8;
+        /* Project Sub-sections (Diagrams, Performance, Previews) */
+        .project-subsection {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px dashed var(--border-dark);
+        }
+        body.light-mode .project-subsection {
+            border-top-color: var(--border-light);
+        }
+
+        .project-subsection h4 {
+            color: var(--primary-dark);
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            text-shadow: 0 0 8px var(--shadow-dark);
+        }
+        body.light-mode .project-subsection h4 {
+            color: var(--primary-light);
+            text-shadow: 0 0 8px var(--shadow-light);
+        }
+
+        .image-container {
+            width: 100%;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px var(--shadow-dark);
+            margin-bottom: 20px;
+            border: 1px solid var(--border-dark);
+        }
+        body.light-mode .image-container {
+            box-shadow: 0 8px 25px var(--shadow-light);
+            border-color: var(--border-light);
+        }
+
+        .image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .table-container {
+            overflow-x: auto;
+            margin-top: 15px;
+            border-radius: 10px;
+            border: 1px solid var(--border-dark);
+        }
+        body.light-mode .table-container {
+            border-color: var(--border-light);
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.95rem;
+        }
+
+        .comparison-table th, .comparison-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid rgba(0, 255, 255, 0.1);
+        }
+        body.light-mode .comparison-table th, body.light-mode .comparison-table td {
+            border-bottom-color: rgba(0, 123, 255, 0.1);
+        }
+
+
+        .comparison-table th {
+            background-color: rgba(0, 255, 255, 0.15);
+            color: var(--primary-dark);
+            font-weight: 600;
+        }
+        body.light-mode .comparison-table th {
+            background-color: rgba(0, 123, 255, 0.1);
+            color: var(--primary-light);
+        }
+
+        .comparison-table td {
+            background-color: rgba(0, 0, 0, 0.3);
+            color: var(--text-dark);
+        }
+        body.light-mode .comparison-table td {
+            background-color: rgba(255, 255, 255, 0.6);
+            color: var(--text-light);
+        }
+
+        .comparison-table tr:hover td {
+            background-color: rgba(0, 255, 255, 0.05);
+        }
+        body.light-mode .comparison-table tr:hover td {
+            background-color: rgba(0, 123, 255, 0.05);
+        }
+
+        /* Carousel for Project Previews */
+        .carousel-container {
+            position: relative;
+            max-width: 100%;
+            margin: 20px auto;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px var(--shadow-dark);
+            border: 1px solid var(--border-dark);
+        }
+        body.light-mode .carousel-container {
+            box-shadow: 0 8px 25px var(--shadow-light);
+            border-color: var(--border-light);
+        }
+
+        .carousel-track {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+            flex-shrink: 0;
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .carousel-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            z-index: 10;
+            font-size: 1.5rem;
+            border-radius: 50%;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        body.light-mode .carousel-button {
+            background-color: rgba(255, 255, 255, 0.7);
+            color: var(--text-light);
+        }
+
+        .carousel-button:hover {
+            background-color: rgba(0, 255, 255, 0.3);
+            transform: translateY(-50%) scale(1.1);
+        }
+        body.light-mode .carousel-button:hover {
+            background-color: rgba(0, 123, 255, 0.3);
+        }
+
+        .carousel-button.prev {
+            left: 10px;
+        }
+
+        .carousel-button.next {
+            right: 10px;
+        }
+
+        .carousel-dots {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .carousel-dot {
+            height: 10px;
+            width: 10px;
+            margin: 0 5px;
+            background-color: rgba(0, 255, 255, 0.3);
+            border-radius: 50%;
+            display: inline-block;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        body.light-mode .carousel-dot {
+            background-color: rgba(0, 123, 255, 0.3);
+        }
+
+        .carousel-dot.active {
+            background-color: var(--primary-dark);
+        }
+        body.light-mode .carousel-dot.active {
+            background-color: var(--primary-light);
+        }
+
+        /* Chatbot Widget Simulation */
+        .chatbot-widget {
+            background: var(--card-bg-dark);
+            border-radius: 15px;
+            border: 1px solid var(--border-dark);
+            box-shadow: 0 5px 20px var(--shadow-dark);
+            padding: 20px;
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        body.light-mode .chatbot-widget {
+            background: var(--card-bg-light);
+            border-color: var(--border-light);
+            box-shadow: 0 5px 20px var(--shadow-light);
+        }
+
+        .chat-messages {
+            height: 200px;
+            overflow-y: auto;
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            border-radius: 10px;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        body.light-mode .chat-messages {
+            border-color: rgba(0, 123, 255, 0.2);
+            background: rgba(255, 255, 255, 0.4);
+        }
+
+        .message {
+            padding: 8px 12px;
+            border-radius: 15px;
+            max-width: 80%;
+            font-size: 0.9rem;
+        }
+
+        .user-message {
+            align-self: flex-end;
+            background-color: #007bff;
+            color: white;
+        }
+
+        .bot-message {
+            align-self: flex-start;
+            background-color: #333;
+            color: white;
+        }
+        body.light-mode .bot-message {
+            background-color: #eee;
+            color: var(--text-light);
+        }
+
+        .chat-input-container {
+            display: flex;
+            gap: 10px;
+        }
+
+        .chat-input-container input {
+            flex-grow: 1;
+            padding: 10px 15px;
+            border-radius: 20px;
+            border: 1px solid var(--border-dark);
+            background: rgba(0, 0, 0, 0.4);
+            color: var(--text-dark);
+            font-size: 1rem;
+        }
+        body.light-mode .chat-input-container input {
+            border-color: var(--border-light);
+            background: rgba(255, 255, 255, 0.7);
+            color: var(--text-light);
+        }
+
+        .chat-input-container button {
+            background: var(--primary-dark);
+            color: #000;
+            border: none;
+            border-radius: 20px;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.3s ease;
+        }
+        body.light-mode .chat-input-container button {
+            background: var(--primary-light);
+            color: var(--text-light); /* Changed to text-light for better readability */
+        }
+        .chat-input-container button:hover {
+            background: var(--secondary-dark);
+        }
+        body.light-mode .chat-input-container button:hover {
+            background: var(--secondary-light);
+        }
+
+        /* Code Snippet Highlights */
+        .code-snippet {
+            background: #282c34; /* Dark background for code */
+            color: #abb2bf; /* Light gray text */
+            padding: 20px;
+            border-radius: 10px;
+            overflow-x: auto;
+            font-family: 'Fira Code', 'Monaco', 'Courier New', monospace;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin-bottom: 20px;
+            border: 1px solid rgba(0, 255, 255, 0.2);
+        }
+        body.light-mode .code-snippet {
+            background: #f8f8f8;
+            color: #333;
+            border-color: rgba(0, 123, 255, 0.2);
+        }
+
+        .code-snippet pre {
+            margin: 0;
+        }
+
+        /* Basic syntax highlighting (can be enhanced with a library like Prism.js) */
+        .code-snippet .keyword { color: #c678dd; } /* Purple */
+        .code-snippet .string { color: #98c379; } /* Green */
+        .code-snippet .comment { color: #5c6370; } /* Gray */
+        .code-snippet .function { color: #61afef; } /* Blue */
+        .code-snippet .number { color: #d19a66; } /* Orange */
+        .code-snippet .class { color: #e5c07b; } /* Yellow */
+
+        /* Jupyter-style outputs */
+        .jupyter-output {
+            background: #3a3f4b;
             color: #e0e0e0;
-            text-align: justify;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            font-family: 'Fira Code', 'Monaco', 'Courier New', monospace;
+            font-size: 0.9rem;
+            line-height: 1.4;
+            border: 1px solid rgba(0, 255, 255, 0.2);
+        }
+        body.light-mode .jupyter-output {
+            background: #f0f0f0;
+            color: #333;
+            border-color: rgba(0, 123, 255, 0.2);
+        }
+
+        .jupyter-output pre {
+            white-space: pre-wrap; /* Wrap long lines */
+            word-wrap: break-word;
+        }
+
+        /* Contact Form */
+        .contact-form-container {
+            background: var(--card-bg-dark);
+            border-radius: 20px;
+            padding: 40px;
+            border: 1px solid var(--border-dark);
+            box-shadow: 0 10px 50px var(--shadow-dark);
+            margin-top: 50px;
+        }
+        body.light-mode .contact-form-container {
+            background: var(--card-bg-light);
+            border-color: var(--border-light);
+            box-shadow: 0 10px 50px var(--shadow-light);
+        }
+
+        .contact-form-container h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--primary-dark);
+        }
+        body.light-mode .contact-form-container h2 {
+            color: var(--primary-light);
+        }
+
+        .contact-form label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+        body.light-mode .contact-form label {
+            color: var(--text-light);
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            border: 1px solid var(--border-dark);
+            background: rgba(0, 0, 0, 0.4);
+            color: var(--text-dark);
+            font-size: 1rem;
+            transition: border-color 0.3s ease, background 0.3s ease;
+        }
+        body.light-mode .contact-form input,
+        body.light-mode .contact-form textarea {
+            border-color: var(--border-light);
+            background: rgba(255, 255, 255, 0.7);
+            color: var(--text-light);
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--primary-dark);
+            box-shadow: 0 0 8px var(--shadow-dark);
+        }
+        body.light-mode .contact-form input:focus,
+        body.light-mode .contact-form textarea:focus {
+            border-color: var(--primary-light);
+            box-shadow: 0 0 8px var(--shadow-light);
+        }
+
+        .contact-form textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .contact-form button {
+            background: linear-gradient(135deg, var(--primary-dark), var(--secondary-dark));
+            color: #000; /* Stays dark for contrast on gradient */
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: block;
+            width: 100%;
+            box-shadow: 0 4px 25px var(--shadow-dark);
+        }
+        body.light-mode .contact-form button {
+            background: linear-gradient(135deg, var(--primary-light), var(--secondary-light));
+            color: var(--text-light); /* Changed to text-light for better readability */
+            box-shadow: 0 4px 25px var(--shadow-light);
+        }
+
+        .contact-form button:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 30px rgba(0, 255, 255, 0.5);
+        }
+        body.light-mode .contact-form button:hover {
+            box-shadow: 0 8px 30px rgba(0, 123, 255, 0.3);
         }
 
         .languages {
@@ -459,30 +1233,53 @@
         }
 
         .language-tag {
-            background: linear-gradient(135deg, #00ffff, #00ff7f);
-            color: #000;
+            background: linear-gradient(135deg, var(--primary-dark), var(--secondary-dark));
+            color: #000; /* Stays dark for contrast on gradient */
             padding: 12px 24px;
             border-radius: 25px;
             font-weight: 600;
-            box-shadow: 0 4px 20px rgba(0, 255, 255, 0.3);
+            box-shadow: 0 4px 20px var(--shadow-dark);
             transition: all 0.3s ease;
             cursor: pointer;
+        }
+        body.light-mode .language-tag {
+            background: linear-gradient(135deg, var(--primary-light), var(--secondary-light));
+            color: var(--text-light); /* Changed to text-light for better readability */
+            box-shadow: 0 4px 20px var(--shadow-light);
         }
 
         .language-tag:hover {
             transform: translateY(-3px) scale(1.05);
             box-shadow: 0 8px 30px rgba(0, 255, 255, 0.5);
         }
+        body.light-mode .language-tag:hover {
+            box-shadow: 0 8px 30px rgba(0, 123, 255, 0.3);
+        }
 
         .cta-section {
-            background: rgba(0, 0, 0, 0.8);
+            background: var(--card-bg-dark);
             backdrop-filter: blur(15px);
             border-radius: 20px;
             padding: 40px;
             text-align: center;
-            border: 1px solid rgba(0, 255, 255, 0.3);
+            border: 1px solid var(--border-dark);
             animation: fadeIn 1s ease-out, pulse 3s ease-in-out infinite;
+            margin-top: 50px;
         }
+        body.light-mode .cta-section {
+            background: var(--card-bg-light);
+            border-color: var(--border-light);
+        }
+
+        /* Explicitly set CTA section text colors for light mode */
+        body.light-mode .cta-section h2 {
+            color: var(--primary-light);
+            text-shadow: none; /* Remove text shadow in light mode for clarity */
+        }
+        body.light-mode .cta-section p {
+            color: var(--text-light);
+        }
+
 
         @keyframes pulse {
             0%, 100% {
@@ -494,6 +1291,17 @@
                 box-shadow: 0 0 50px rgba(0, 255, 255, 0.3);
             }
         }
+        body.light-mode @keyframes pulse {
+            0%, 100% {
+                border-color: rgba(0, 123, 255, 0.3);
+                box-shadow: 0 0 30px rgba(0, 123, 255, 0.1);
+            }
+            50% {
+                border-color: rgba(0, 123, 255, 0.6);
+                box-shadow: 0 0 50px rgba(0, 123, 255, 0.3);
+            }
+        }
+
 
         @keyframes fadeIn {
             from { opacity: 0; }
@@ -501,8 +1309,8 @@
         }
 
         .cta-button {
-            background: linear-gradient(135deg, #00ffff, #00ff7f);
-            color: #000;
+            background: linear-gradient(135deg, var(--primary-dark), var(--secondary-dark));
+            color: #000; /* Stays dark for contrast on gradient */
             padding: 15px 40px;
             border: none;
             border-radius: 50px;
@@ -513,9 +1321,14 @@
             text-decoration: none;
             display: inline-block;
             margin: 10px;
-            box-shadow: 0 4px 25px rgba(0, 255, 255, 0.3);
+            box-shadow: 0 4px 25px var(--shadow-dark);
             position: relative;
             overflow: hidden;
+        }
+        body.light-mode .cta-button {
+            background: linear-gradient(135deg, var(--primary-light), var(--secondary-light));
+            color: var(--text-light); /* Changed to text-light for better readability */
+            box-shadow: 0 44px 25px var(--shadow-light);
         }
 
         .cta-button::before {
@@ -532,6 +1345,9 @@
         .cta-button:hover {
             transform: translateY(-5px) scale(1.05);
             box-shadow: 0 10px 40px rgba(0, 255, 255, 0.5);
+        }
+        body.light-mode .cta-button:hover {
+            box-shadow: 0 10px 40px rgba(0, 123, 255, 0.3);
         }
 
         .cta-button:hover::before {
@@ -557,6 +1373,10 @@
             animation: float 8s ease-in-out infinite, rotate 10s linear infinite;
             box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
         }
+        body.light-mode .floating-element {
+            background: linear-gradient(135deg, rgba(0, 123, 255, 0.3), rgba(40, 167, 69, 0.3));
+            box-shadow: 0 0 20px rgba(0, 123, 255, 0.3);
+        }
 
         @keyframes rotate {
             from { transform: rotate(0deg); }
@@ -569,23 +1389,19 @@
         }
 
         @media (max-width: 768px) {
-            .main-content {
-                grid-template-columns: 1fr;
-            }
-            
-            .contact-info {
-                flex-direction: column;
-                align-items: center;
-            }
-            
             h1 {
                 font-size: 2rem;
             }
-            
-            .subtitle {
+
+            .tagline {
                 font-size: 1.2rem;
             }
 
+            .quick-facts, .contact-info {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+            }
             .project-header {
                 flex-direction: column;
                 align-items: flex-start;
@@ -599,6 +1415,16 @@
             .project-tags {
                 justify-content: flex-start;
             }
+
+            nav ul {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+            .theme-toggle {
+                position: static;
+                margin-top: 15px;
+            }
         }
     </style>
 </head>
@@ -608,16 +1434,36 @@
         <div class="floating-element" style="top: 20%; right: 20%; animation-delay: 1s;"></div>
         <div class="floating-element" style="bottom: 30%; left: 30%; animation-delay: 2s;"></div>
         <div class="floating-element" style="bottom: 10%; right: 10%; animation-delay: 3s;"></div>
+        <div class="floating-element" style="top: 40%; left: 5%; animation-delay: 1.5s; width: 40px; height: 40px;"></div>
+        <div class="floating-element" style="bottom: 20%; right: 25%; animation-delay: 2.5s; width: 25px; height: 25px;"></div>
     </div>
 
+    <nav>
+        <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <button class="theme-toggle" id="themeToggle"><i class="fas fa-sun"></i></button>
+    </nav>
+
     <div class="container">
-        <header>
+        <header id="about">
             <h1>EzzEdden Nazzal</h1>
-            <p class="subtitle">Junior Data Scientist | AI & ML Practitioner</p>
+            <p class="tagline">Junior Data Scientist | Python • SQL • ML Practitioner</p>
+            <div class="resume-section">
+                <a href="YOUR_GITHUB_REPO_LINK/EzzEdden%20Nazzal%20-%20Data%20Scientist%20Resume.pdf" target="_blank" class="resume-button">
+                    <i class="fas fa-file-download"></i> Download Résumé (PDF)
+                </a>
+                <div class="quick-facts">
+                    <span class="fact-item"><i class="fas fa-graduation-cap"></i> B.Sc. in Data Science & AI, Yarmouk University (2025)</span>
+                </div>
+            </div>
             <div class="contact-info">
                 <a href="tel:+962787346103" class="contact-item">📞 +962787346103</a>
                 <a href="mailto:eznazzal10@gmail.com" class="contact-item">✉️ eznazzal10@gmail.com</a>
-                <a href="#" class="contact-item">📍 Irbid, Jordan</a>
+                <span class="contact-item">📍 Irbid, Jordan</span> <!-- Changed to span as it's not a link -->
                 <a href="https://www.linkedin.com/in/ezz-nazzal-97b68b241/" target="_blank" class="contact-item">
                     <svg class="linkedin-icon" viewBox="0 0 24 24">
                         <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
@@ -631,35 +1477,39 @@
             <div class="card">
                 <h2>Professional Summary</h2>
                 <p class="summary-text">
-Detail-oriented Data Scientist with a strong academic background in Data Science and Artificial Intelligence. Proficient in Python, SQL, and Microsoft Excel for data manipulation, analysis, and automation. Skilled in building and evaluating machine learning models to extract actionable insights and support data-driven decision-making. Adept at solving complex problems and optimizing processes to enhance business performance.                </p>
+                    Highly motivated Junior Data Scientist with a B.Sc. in Data Science and AI. Proficient in Python, SQL, and Excel for data analysis and machine learning model development. Eager to apply strong analytical and problem-solving skills to real-world data challenges and drive impactful insights.
+                </p>
             </div>
 
-            <div class="card">
+            <div class="card" id="skills">
                 <h2>Technical Skills</h2>
                 <div class="skills-grid">
-                    <div class="skill-category">
-                        <h3>Data Analysis</h3>
-                        <p>Python (Pandas, NumPy), SQL, Microsoft Excel, IBM Cognos</p>
+                    <div class="skill-item">
+                        <i class="fas fa-database"></i> <span>Data Analysis (Python, SQL, Excel, IBM Cognos)</span>
                     </div>
-                    <div class="skill-category">
-                        <h3>Data Visualization</h3>
-                        <p>Reports, Graphs, Matplotlib, Seaborn</p>
+                    <div class="skill-item">
+                        <i class="fas fa-chart-bar"></i> <span>Data Visualization (Matplotlib, Seaborn)</span>
                     </div>
-                    <div class="skill-category">
-                        <h3>Database Management</h3>
-                        <p>SQL, Data Cleaning, Data Transformation</p>
+                    <div class="skill-item">
+                        <i class="fas fa-server"></i> <span>Database Management (SQL, Data Cleaning)</span>
                     </div>
-                    <div class="skill-category">
-                        <h3>Machine Learning</h3>
-                        <p>Scikit-learn, Regression, Classification, Model Evaluation</p>
+                    <div class="skill-item">
+                        <i class="fas fa-brain"></i> <span>Machine Learning (Scikit-learn, Regression, Classification)</span>
                     </div>
-                    <div class="skill-category">
-                        <h3>Web Scraping</h3>
-                        <p>BeautifulSoup</p>
+                    <div class="skill-item">
+                        <i class="fas fa-robot"></i> <span>Natural Language Processing</span>
                     </div>
-                    <div class="skill-category">
-                        <h3>Soft Skills</h3>
-                        <p>Analytical Thinking, Problem-Solving, Communication</p>
+                    <div class="skill-item">
+                        <i class="fas fa-code-branch"></i> <span>Deep Learning</span>
+                    </div>
+                    <div class="skill-item">
+                        <i class="fas fa-spider"></i> <span>Web Scraping (BeautifulSoup)</span>
+                    </div>
+                    <div class="skill-item">
+                        <i class="fas fa-comments"></i> <span>Communication</span>
+                    </div>
+                    <div class="skill-item">
+                        <i class="fas fa-lightbulb"></i> <span>Problem-Solving</span>
                     </div>
                 </div>
             </div>
@@ -685,7 +1535,7 @@ Detail-oriented Data Scientist with a strong academic background in Data Science
             </div>
         </div>
 
-        <div class="card">
+        <div class="card" id="projects">
             <h2>Featured Projects</h2>
             <div class="project-item">
                 <div class="project-header">
@@ -696,31 +1546,30 @@ Detail-oriented Data Scientist with a strong academic background in Data Science
                         <span class="project-tag">Neural Networks</span>
                         <span class="project-tag">Telegram Bot</span>
                         <span class="project-tag">Flask</span>
+                        <span class="project-tag">Deep Learning</span>
                     </div>
                 </div>
                 <p class="project-description">
-                    Developed an intelligent conversational agent for Yarmouk University with bilingual support (Arabic/English). 
-                    The system combines a feed-forward neural network (92% accuracy) for intent classification with LLM fallback 
-                    for complex queries. Built on a custom FAQ dataset of 4,917 questions across 236 intents.
+                    An intelligent conversational agent for Yarmouk University, providing bilingual support (Arabic/English). This hybrid system combines a Feed-Forward Neural Network for high-accuracy intent classification with an LLM fallback for nuanced queries, ensuring comprehensive student support.
                 </p>
                 <div class="project-features">
                     <div class="feature-item">
-                        <strong>🧠 AI-Powered:</strong> Feed-forward neural network with 92% classification accuracy
+                        <strong>🧠 Hybrid FNN + LLM:</strong> Achieved 92% intent-classification accuracy with &lt;1s response for predefined queries.
                     </div>
                     <div class="feature-item">
-                        <strong>🌐 Bilingual:</strong> Arabic/English support with spelling correction and name matching
+                        <strong>📊 Robust Dataset:</strong> Built a 4,917-question FAQ dataset across 236 intents.
                     </div>
                     <div class="feature-item">
-                        <strong>⚡ Hybrid System:</strong> Combines rule-based responses with LLM-generated answers
+                        <strong>🌐 Custom NLP Pipeline:</strong> Developed Arabic-English preprocessing (translation, lemmatization, spell-correction).
                     </div>
                     <div class="feature-item">
-                        <strong>🚀 Multi-Platform:</strong> Telegram bot and web interface deployment
+                        <strong>🚀 Multi-Platform Deployment:</strong> Live support via Telegram and Flask web UI.
                     </div>
                 </div>
                 <div class="project-metrics">
                     <div class="metric">
                         <span class="metric-number">4,917</span>
-                        <span class="metric-label">Training Questions</span>
+                        <span class="metric-label">FAQ Questions</span>
                     </div>
                     <div class="metric">
                         <span class="metric-number">236</span>
@@ -728,7 +1577,11 @@ Detail-oriented Data Scientist with a strong academic background in Data Science
                     </div>
                     <div class="metric">
                         <span class="metric-number">92%</span>
-                        <span class="metric-label">Accuracy</span>
+                        <span class="metric-label">FNN Accuracy</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-number">&lt;1s</span>
+                        <span class="metric-label">Response Time</span>
                     </div>
                 </div>
             </div>
@@ -737,15 +1590,15 @@ Detail-oriented Data Scientist with a strong academic background in Data Science
         <div class="card">
             <h2>Languages</h2>
             <div class="languages">
-                <span class="language-tag">Arabic</span>
-                <span class="language-tag">English</span>
+                <span class="language-tag">Arabic (Native)</span>
+                <span class="language-tag">English (Fluent)</span>
             </div>
         </div>
 
-        <div class="cta-section">
-            <h2 style="color: #00ffff; margin-bottom: 20px; text-shadow: 0 0 20px rgba(0, 255, 255, 0.5);">Ready to Transform Data into Insights</h2>
-            <p style="color: #e0e0e0; margin-bottom: 30px; font-size: 1.1rem;">
-                Let's collaborate on your next data science project and unlock the power of your data
+        <div class="cta-section" id="contact">
+            <h2 class="cta-title">Ready to Transform Data into Insights</h2>
+            <p class="cta-text">
+                Let's collaborate on your next data science project and unlock the power of your data.
             </p>
             <a href="mailto:eznazzal10@gmail.com" class="cta-button">Get In Touch</a>
             <a href="tel:+962787346103" class="cta-button">Call Now</a>
@@ -753,7 +1606,16 @@ Detail-oriented Data Scientist with a strong academic background in Data Science
     </div>
 
     <script>
-        // Add smooth scrolling and interactive elements
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
         document.addEventListener('DOMContentLoaded', function() {
             // Animate cards on scroll
             const cards = document.querySelectorAll('.card');
@@ -761,16 +1623,17 @@ Detail-oriented Data Scientist with a strong academic background in Data Science
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.style.animation = 'fadeInUp 0.8s ease-out';
+                        observer.unobserve(entry.target); // Only animate once
                     }
                 });
-            });
-            
+            }, { threshold: 0.1 }); // Trigger when 10% of the element is visible
+
             cards.forEach(card => {
                 observer.observe(card);
             });
 
             // Add click animations to buttons
-            const buttons = document.querySelectorAll('.cta-button, .contact-item');
+            const buttons = document.querySelectorAll('.cta-button, .contact-item, .resume-button, .skill-item, .language-tag');
             buttons.forEach(button => {
                 button.addEventListener('click', function(e) {
                     this.style.transform = 'scale(0.95)';
@@ -785,16 +1648,64 @@ Detail-oriented Data Scientist with a strong academic background in Data Science
             const originalText = title.textContent;
             title.textContent = '';
             let i = 0;
-            
+
             function typeWriter() {
                 if (i < originalText.length) {
                     title.textContent += originalText.charAt(i);
                     i++;
                     setTimeout(typeWriter, 100);
+                } else {
+                    // Start glow animation after typing is complete
+                    title.style.animation = 'textGlow 2s ease-in-out infinite alternate';
                 }
             }
-            
-            setTimeout(typeWriter, 500);
+            setTimeout(typeWriter, 500); // Delay start of typing effect
+
+            // Light/Dark Mode Toggle
+            const themeToggle = document.getElementById('themeToggle');
+            const body = document.body;
+
+            // Check for saved theme preference
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) {
+                body.classList.add(savedTheme);
+                if (savedTheme === 'light-mode') {
+                    themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+                } else {
+                    themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+                }
+            } else {
+                // Default to dark mode
+                body.classList.add('dark-mode');
+                themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+            }
+
+
+            themeToggle.addEventListener('click', () => {
+                if (body.classList.contains('dark-mode')) {
+                    body.classList.remove('dark-mode');
+                    body.classList.add('light-mode');
+                    themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+                    localStorage.setItem('theme', 'light-mode');
+                } else {
+                    body.classList.remove('light-mode');
+                    body.classList.add('dark-mode');
+                    themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+                    localStorage.setItem('theme', 'dark-mode');
+                }
+            });
+
+            // Google Analytics Placeholder (Replace with your actual GA code)
+            /*
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+            ga('create', 'UA-XXXXX-Y', 'auto'); // Replace 'UA-XXXXX-Y' with your tracking ID
+            ga('send', 'pageview');
+            */
+
         });
     </script>
 </body>
