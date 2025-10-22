@@ -270,7 +270,9 @@
             line-height: 1.4;
         }
 
-        .education-item, .cert-item {
+        /* --- New/Updated Item Styles for Experience, Education, and Certs --- */
+
+        .experience-item, .education-item, .cert-item {
             background: linear-gradient(135deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 255, 127, 0.1) 100%);
             padding: 20px;
             border-radius: 15px;
@@ -281,7 +283,11 @@
             overflow: hidden;
         }
 
-        .education-item::before, .cert-item::before {
+        .experience-item:last-child, .education-item:last-child, .cert-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .experience-item::before, .education-item::before, .cert-item::before {
             content: '';
             position: absolute;
             top: 0;
@@ -293,25 +299,52 @@
             transition: transform 0.6s ease;
         }
 
-        .education-item:hover, .cert-item:hover {
+        .experience-item:hover, .education-item:hover, .cert-item:hover {
             transform: translateX(10px) scale(1.02);
             box-shadow: 0 10px 30px rgba(0, 255, 127, 0.2);
             border-left-color: #00ffff;
         }
 
-        .education-item:hover::before, .cert-item:hover::before {
+        .experience-item:hover::before, .education-item:hover::before, .cert-item:hover::before {
             transform: translateX(100%);
         }
 
-        .education-item h3, .cert-item h3 {
+        .experience-item h3, .education-item h3, .cert-item h3 {
             color: #00ff7f;
             margin-bottom: 5px;
         }
 
-        .education-item p, .cert-item p {
+        .experience-item p, .education-item p, .cert-item p {
             color: #b0b0b0;
             font-size: 0.9rem;
+            margin-bottom: 10px;
         }
+
+        .experience-item ul {
+            list-style: none;
+            padding-left: 0;
+            margin-top: 10px;
+        }
+
+        .experience-item ul li {
+            padding-left: 20px;
+            position: relative;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+            color: #d0d0d0;
+        }
+
+        .experience-item ul li::before {
+            content: '•';
+            color: #00ffff;
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+        
+        /* --- End New/Updated Item Styles --- */
+
 
         .project-item {
             background: linear-gradient(135deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 100, 255, 0.1) 100%);
@@ -487,6 +520,7 @@
             text-align: center;
             border: 1px solid rgba(0, 255, 255, 0.3);
             animation: fadeIn 1s ease-out, pulse 3s ease-in-out infinite;
+            margin-top: 30px; /* Added margin for separation */
         }
 
         @keyframes pulse {
@@ -627,6 +661,17 @@
                 <a href="tel:+962787346103" class="contact-item">📞 +962787346103</a>
                 <a href="mailto:eznazzal10@gmail.com" class="contact-item">✉️ eznazzal10@gmail.com</a>
                 <span class="contact-item">📍 Amman, Jordan</span>
+                <!-- Added Portfolio and GitHub links for completeness from CV structure -->
+                <a href="[ezznazzal]" target="_blank" class="contact-item">
+                    <!-- Portfolio Icon (Briefcase SVG) -->
+                    <svg class="linkedin-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+                    Portfolio
+                </a>
+                <a href="[Ezz Nazzal]" target="_blank" class="contact-item">
+                    <!-- GitHub Icon (Octocat Placeholder SVG) -->
+                    <svg class="linkedin-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.809 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.082-.743.085-.729.085-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.835 2.809 1.305 3.495.998.108-.77.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23a11.503 11.503 0 0 1 6.007 0c2.292-1.552 3.3-1.23 3.3-1.23.653 1.652.242 2.873.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.923.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.815 24 17.317 24 12c0-6.627-5.373-12-12-12z"/></svg>
+                    GitHub Profile
+                </a>
                 <a href="https://www.linkedin.com/in/ezz-nazzal-97b68b241/" target="_blank" class="contact-item">
                     <!-- LinkedIn icon SVG -->
                     <svg class="linkedin-icon" viewBox="0 0 24 24">
@@ -642,37 +687,37 @@
             <div class="card">
                 <h2>Professional Summary</h2>
                 <p class="summary-text">
-                    Results-driven Data Scientist with a strong foundation in AI and machine learning. Skilled in developing and deploying ML models, automating analytics workflows, and extracting insights from complex datasets. Proficient in Python, SQL, and NLP, with experience in chatbot development and intelligent systems
+                    Results-driven Data Scientist with a strong foundation in AI and machine learning. Skilled in developing and deploying ML models, automating analytics workflows, and extracting insights from complex datasets. Proficient in Python, SQL, and NLP, with experience in chatbot development and intelligent systems.
                 </p>
             </div>
 
-            <!-- Technical Skills section -->
+            <!-- Technical Skills section - UPDATED -->
             <div class="card">
                 <h2>Skills</h2>
                 <div class="skills-grid">
                     <div class="skill-category">
                         <h3>Programming & Tools</h3>
-                        <p>Python (Pandas, NumPy, Scikit-learn, TensorFlow), SQL, Jupyter, Microsoft Excel</p>
+                        <p>Python, SQL (PL/SQL), Pandas, NumPy, Scikit-learn, TensorFlow, Jupyter, Excel, N8N</p>
                     </div>
                     <div class="skill-category">
-                        <h3>Machine Learning</h3>
-                        <p>Supervised Learning, Classification, Regression, Model Evaluation, Feature Engineering</p>
+                        <h3>AI & Machine Learning</h3>
+                        <p>Supervised & Unsupervised Learning, Classification, Regression, Anomaly/Fraud Detection, Model Evaluation, Feature Engineering</p>
                     </div>
                     <div class="skill-category">
                         <h3>NLP & Chatbots</h3>
-                        <p>Text Preprocessing, Vectorization, Lemmatization, Multilingual Processing</p>
+                        <p>Text Preprocessing, Vectorization (TF-IDF), Lemmatization, Multilingual Processing, Intent Classification</p>
                     </div>
                     <div class="skill-category">
                         <h3>Data Visualization</h3>
-                        <p>Reports, Graphs, Matplotlib, Seaborn</p>
+                        <p>Matplotlib, Seaborn, Reports, Graphs</p>
                     </div>
                     <div class="skill-category">
                         <h3>Web & Automation</h3>
-                        <p>BeautifulSoup (Web Scraping)</p>
+                        <p>BeautifulSoup (Web Scraping), Automation Workflows, Flask</p>
                     </div>
                     <div class="skill-category">
                         <h3>Soft Skills</h3>
-                        <p>Analytical Thinking, Problem-Solving, Communication, Team Working</p>
+                        <p>Analytical Thinking, Problem-Solving, Communication, Teamwork, Teaching, Time Management</p>
                     </div>
                 </div>
             </div>
@@ -681,22 +726,49 @@
             <div class="card">
                 <h2>Education</h2>
                 <div class="education-item">
-                    <h3>Bachelor in Data Science and Artificial Intelligence</h3>
-                    <p><strong>Yarmouk University</strong> • Graduated with Honors (GPA: 87.2%) • 2025</p>
+                    <h3>BSc in Data Science and Artificial Intelligence</h3>
+                    <p><strong>Yarmouk University, Irbid, Jordan</strong> | Oct 2021 - Jun 2025</p>
+                    <p>Graduated with Honors (GPA: 87.2% | 10th Place)</p>
                 </div>
             </div>
 
-            <!-- Certifications section -->
+            <!-- Certifications section - UPDATED -->
             <div class="card">
                 <h2>Certifications</h2>
                 <div class="cert-item">
                     <h3>IBM Data Analyst Professional Certificate</h3>
-                    <p><strong>IBM</strong> • 2025 (11 courses)</p>
+                    <p><strong>IBM</strong> • Issued Feb 2025 (11 courses)</p>
                 </div>
                 <div class="cert-item">
                     <h3>Supervised Machine Learning: Regression and Classification</h3>
-                    <p><strong>DeepLearning.AI & Stanford University</strong> • 2025</p>
+                    <p><strong>DeepLearning.AI & Stanford University</strong> • Issued April 2025</p>
                 </div>
+                <div class="cert-item">
+                    <h3>Advanced Learning Algorithms</h3>
+                    <p><strong>DeepLearning.AI & Stanford Online</strong> • Issued Sep 2025</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Professional Experience section - NEW SECTION ADDED -->
+        <div class="card" style="margin-bottom: 30px;">
+            <h2>Professional Experience</h2>
+            
+            <div class="experience-item">
+                <h3>Data Scientist Intern</h3>
+                <p><strong>Irbid Electricity Company (IDECO)</strong> | Sep 2025 - Present</p>
+                <ul>
+                    <li>Automated technician reports using N8N, reducing review time from 1 hour per 10 reports to just 10 seconds.</li>
+                    <li>Developed an unsupervised learning model to detect electricity theft and manipulation, significantly improving fraud detection efficiency.</li>
+                </ul>
+            </div>
+            
+            <div class="experience-item">
+                <h3>Generative AI Intern</h3>
+                <p><strong>Al Hussein Technical University (HTU)</strong> | Oct 2025 - Present</p>
+                <ul>
+                    <li>Engaged in English language, soft skills, and technical training focused on Generative AI applications and development.</li>
+                </ul>
             </div>
         </div>
 
@@ -732,7 +804,7 @@
                         <strong>🚀 Multi-Platform:</strong> Integrated with Telegram and a Flask-based web interface
                     </div>
                     <div class="feature-item">
-                        <strong>⏱️ Availability:</strong> 24/7 Availability, significantly reduced staff workload by automating over 80% of routine queries.
+                        <strong>⏱️ Productivity Gains:</strong> 24/7 Availability, significantly reduced staff workload by automating over 80% of routine queries.
                     </div>
                 </div>
                 <div class="project-metrics">
@@ -819,4 +891,3 @@
     </script>
 </body>
 </html>
-
